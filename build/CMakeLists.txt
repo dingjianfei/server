@@ -215,7 +215,7 @@ ExternalProject_Add(protobuf
 #
 ExternalProject_Add(absl
   PREFIX absl
-  SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/grpc-repo/src/grpc/third_party/abseil-cpp"
+  SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/grpc-repo-new/src/grpc/third_party/abseil-cpp"
   DOWNLOAD_COMMAND ""
   CMAKE_CACHE_ARGS
     -DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=TRUE
@@ -429,9 +429,9 @@ ExternalProject_Add(crc32c
 # external projects but expects them in CMAKE_PREFIX_PATH
 set(GCS_CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH}
    ${CMAKE_CURRENT_BINARY_DIR}/c-ares/lib/cmake/c-ares
-   ${CMAKE_CURRENT_BINARY_DIR}/grpc/lib/cmake/grpc
-   ${CMAKE_CURRENT_BINARY_DIR}/crc32c/lib/cmake/Crc32c
    ${CMAKE_CURRENT_BINARY_DIR}/absl/lib/cmake/absl
+   ${CMAKE_CURRENT_BINARY_DIR}/crc32c/lib/cmake/Crc32c
+   ${CMAKE_CURRENT_BINARY_DIR}/grpc/lib/cmake/grpc
    ${CMAKE_CURRENT_BINARY_DIR}/nlohmann_json/lib/cmake/nlohmann_json
    ${_FINDPACKAGE_PROTOBUF_CONFIG_DIR})
 
