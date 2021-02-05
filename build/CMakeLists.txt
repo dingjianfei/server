@@ -149,7 +149,7 @@ endif()
 ExternalProject_Add(grpc-repo
   PREFIX grpc-repo
   GIT_REPOSITORY "https://github.com/grpc/grpc.git"
-  GIT_TAG "v1.25.0"
+  GIT_TAG "v1.32.0"
   SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/grpc-repo/src/grpc"
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
@@ -262,19 +262,21 @@ ExternalProject_Add(grpc
   CMAKE_CACHE_ARGS
     -DgRPC_INSTALL:BOOL=ON
     -DgRPC_BUILD_TESTS:BOOL=OFF
+    -DgRPC_ABSL_PROVIDER:STRING=package
     -DgRPC_PROTOBUF_PROVIDER:STRING=package
     -DgRPC_PROTOBUF_PACKAGE_TYPE:STRING=CONFIG
     -DgRPC_ZLIB_PROVIDER:STRING=package
     -DgRPC_CARES_PROVIDER:STRING=package
     -DgRPC_SSL_PROVIDER:STRING=package
     -Dc-ares_DIR:PATH=${CMAKE_CURRENT_BINARY_DIR}/c-ares/lib/cmake/c-ares
+    -Dabsl_DIR:PATH=${CMAKE_CURRENT_BINARY_DIR}/absl/lib/cmake/absl
     -DProtobuf_DIR:PATH=${_FINDPACKAGE_PROTOBUF_CONFIG_DIR}
     ${_CMAKE_ARGS_OPENSSL_ROOT_DIR}
     ${_CMAKE_ARGS_CMAKE_TOOLCHAIN_FILE}
     ${_CMAKE_ARGS_VCPKG_TARGET_TRIPLET}
     -DCMAKE_BUILD_TYPE:STRING=${CMAKE_BUILD_TYPE}
     -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/grpc
-  DEPENDS grpc-repo c-ares protobuf
+  DEPENDS grpc-repo c-ares absl protobuf
 )
 
 #
