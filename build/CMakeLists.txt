@@ -426,7 +426,10 @@ ExternalProject_Add(crc32c
 
 # This is necessary because google-cloud-cpp
 # does not pass protobuf_DIR and gRPC_DIR etc to its
-# external projects but expects them in CMAKE_PREFIX_PATH
+# external projects but expects them in CMAKE_PREFIX_PATH.
+# 
+# absl must preceed grpc to ensure that the absl is not 
+# picked up from old grpc path.
 set(GCS_CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH}
    ${CMAKE_CURRENT_BINARY_DIR}/c-ares/lib/cmake/c-ares
    ${CMAKE_CURRENT_BINARY_DIR}/absl/lib/cmake/absl
